@@ -20,7 +20,7 @@ random.seed(1337)
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('--num-proc', type=int, default=4)
-    parser.add_argument('--data-file', type=str, default='/nfs/projects/eye_reward/fixation_data_next_token_c.pkl')
+    parser.add_argument('--data-file', type=str, default='/nfs/projects/smith_study.pkl')
     parser.add_argument('--holdout', type=str, default='p1')
     parser.add_argument('--data-dir', type=str, default='bins/')
     

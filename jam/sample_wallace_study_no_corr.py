@@ -130,9 +130,7 @@ for testfile in tqdm.tqdm(testfiles[:]):
                 match = re.search(r'(NEXTTOKEN:.*)', ret)
                 attn_score = attn_score[0]
                 attn_score_list.append(attn_score)
-            if(len(attn_score_list) % 50 == 0 and len(attn_score_list) > 1):
-                corr, _ = pearsonr(human_data, attn_score_list)
-                print(corr)
+corr, _ = pearsonr(human_data, attn_score_list)
 
 
 

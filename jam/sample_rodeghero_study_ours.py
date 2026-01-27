@@ -135,7 +135,6 @@ for testfile in tqdm.tqdm(testfiles[:]):
                 attn_score_list.append(attn_score)
 
 corr, _ = pearsonr(human_data, attn_score_list)
-print(corr)
 human_and_predicted_outfile_name = os.path.join(out_dir, "result.pkl")
 output_dict = {"human_data": human_data, "predicted_data":attn_score_list}
 pickle.dump(output_dict, open(human_and_predicted_outfile_name, "wb"))

@@ -5,7 +5,7 @@ rm correlation_b_paticipant_c.csv
 for p in "${participant_list[@]}"; do
 	rm -r ./smith_study_ours/$p
 	mkdir ./smith_study_ours/$p
-	cp /scratch00/chiayi/cam/ckpt.pt ./smith_study_ours/$p/ckpt_$p.pt
+	cp /nfs/projects/cam/ckpt.pt ./smith_study_ours/$p/ckpt_$p.pt
 	sleep 2
 
 	CUDA_DEVICE_ORDER='PCI_BUS_ID' CUDA_VISIBLE_DEVICES='0,1' OMP_NUM_THREADS=2 time torchrun --rdzv-backend=c10d --rdzv-endpoint=localhost:4111 --nnodes=1 --nproc_per_node=2 finetune_smith_study_ours_no_corr.py config/finetune_smith_study_ours_no_corr.py --outfilename=ckpt_$p.pt --holdout=$p --out_dir=./smith_study_ours/$p
