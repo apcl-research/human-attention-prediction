@@ -60,9 +60,11 @@ To finetune the models and make the prediction, simply run the bash scripts for 
 ./run_finetune_rodeghero_study_ours_nocorr.sh
 ```
 
-Note that the script will copy the pretrained model and create the relative directory. After running the script, it will generate a ``csv`` file that includes the Pearson corrlation for the related dataset and model. Please see the [Metrics](#metrics) section for how to compute all metrics.
+- Note that the script will copy the pretrained model and create the relative directory. After running the script, it will generate a ``csv`` file that includes the Pearson corrlation for the related dataset and model. Please see the [Metrics](#metrics) section for how to compute all metrics.
 
-The script will also generate the ``.pkl`` file that include all of the results for computing metrics.
+- The script will also generate the ``.pkl`` file that include all of the results for computing metrics.
+
+- Note that we used the model that has already been finetuned with Wllace study to finetune the model with the Rodeghero study because the Rodeghero study is much smaller comapred with other datasets.
 
 ## Metrics
 To computing the metrics, run the following scripts for each study:
@@ -135,6 +137,8 @@ Run the following scripts to train the models proposed by Tafasca et al. in our 
 
 - Note that the script will generate the model checkpoint, prediction results in a pickle file, a file that show Pearson correlation between human reference and model predicition.
 - You will need to place those results in the right place or change the directory of the script in the [Metrics](#metrics) section to run the full evaluation.
+
+
 
 
 
