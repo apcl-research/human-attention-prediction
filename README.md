@@ -5,7 +5,7 @@
 - [Data Processing](#data-processing)
 - [Finetuning and Inference](#finetuning-and-inference)
 - [Metrics](#metrics)
-- [Jam](#jam)
+- [Bansal Baseline](#bansal-baseline)
 
 ## To-do list
 
@@ -77,5 +77,41 @@ python3 metrics_smith_study.py
 ```
 python3 metrics_rodeghero_study.py
 ```
+
+## Bansal Baseline
+These steps show you how to obtain that results that we have for Bansal baseline in the paper.
+
+Step 1: Run the following scripts to generate ScrML
+```
+python gen_srcml.py   --input_path /nfs/projects/wallace_study.pkl   --output_path ./wallace_study_srcml.pkl
+```
+
+Step 2: Build the vaocabularies for training 
+```
+python gen_vocab.py --fixation_data_path /nfs/projects/wallace_study.pkl --output_vocab_path ./wallace_study_vocab.pkl
+```
+
+Step 3: Train the models 
+- Wallace study
+```
+./run_train_wallace_study.sh
+```
+
+- Smith study
+```
+./run_train_smith_study.sh
+```
+
+- Rodeghero study
+```
+./run_train_rodeghero_study.sh
+```
+
+- Please note that the script will generate the model checkpoint, prediction results in a pickle file, a file that show Pearson correlation between human reference and model predicition.
+
+- You will need to place those results in the right place or change the directory of the script in the [Metrics](#metrics) section to run the full evaluation.
+
+
+
 
 
