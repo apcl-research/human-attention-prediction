@@ -6,6 +6,7 @@
 - [Finetuning and Inference](#finetuning-and-inference)
 - [Metrics](#metrics)
 - [Bansal Baseline](#bansal-baseline)
+- [Tafasca Baseline](#tafasca-baseline)
 
 ## To-do list
 
@@ -79,7 +80,7 @@ python3 metrics_rodeghero_study.py
 ```
 
 ## Bansal Baseline
-These steps show you how to obtain that results that we have for Bansal baseline in the paper.
+Follow the following steps to train the model proposed by Bansal et al. in our implementation:
 
 Step 1: Run the following scripts to generate ScrML
 ```
@@ -107,11 +108,29 @@ Step 3: Train the models
 ./run_train_rodeghero_study.sh
 ```
 
-- Please note that the script will generate the model checkpoint, prediction results in a pickle file, a file that show Pearson correlation between human reference and model predicition.
+- Note that the script will generate the model checkpoint, prediction results in a pickle file, a file that show Pearson correlation between human reference and model predicition.
 
 - You will need to place those results in the right place or change the directory of the script in the [Metrics](#metrics) section to run the full evaluation.
 
+## Tafasca Baseline
+Run the following scripts to train the models proposed by Tafasca et al. in our implementation:
 
+- Wallace study
+```
+./run_train_wallace_study.sh
+```
 
+- Smith study
+```
+./run_train_smith_study.sh
+```
+
+- Rodeghero study
+```
+./run_train_rodeghero_study.sh
+```
+
+- Note that the script will generate the model checkpoint, prediction results in a pickle file, a file that show Pearson correlation between human reference and model predicition.
+- You will need to place those results in the right place or change the directory of the script in the [Metrics](#metrics) section to run the full evaluation.
 
 
