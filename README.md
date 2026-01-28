@@ -17,6 +17,7 @@ pip install -r requirements.txt
 
 - Download the data in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place all data in ``/nfs/projects/``. Otherwise, you would need to change the directory in the data compiling script.
 - Downlad the models pretrained models in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place C models in ``/nfs/projects/cam`` and Java models in ``/nfs/dropbox/jam350m_jm_1024``.
+- For our model, the scripts are in [jam](./jam)
 
 ## Data Processing
 For data processing, simply run the bash script for each dataset as follows:
@@ -132,5 +133,6 @@ Run the following scripts to train the models proposed by Tafasca et al. in our 
 
 - Note that the script will generate the model checkpoint, prediction results in a pickle file, a file that show Pearson correlation between human reference and model predicition.
 - You will need to place those results in the right place or change the directory of the script in the [Metrics](#metrics) section to run the full evaluation.
+
 
 
