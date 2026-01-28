@@ -9,10 +9,10 @@ from sklearn.metrics import r2_score
 # ============================================================
 
 BASE_DIRS = [
-    "/nfs/projects/ptgt_predictions/smith_dataset/ours",
-    "/nfs/projects/ptgt_predictions/smith_dataset/ours_no_corr",
-    "/nfs/projects/ptgt_predictions/smith_dataset/tafasca_baseline",
-    "/nfs/projects/ptgt_predictions/smith_dataset/bansal_baseline"
+    "/nfs/projects/ptgt_predictions/rodeghero_dataset/ours",
+    "/nfs/projects/ptgt_predictions/rodeghero_dataset/ours_nocorr",
+    "/nfs/projects/ptgt_predictions/rodeghero_dataset/bansal_baseline",
+    "/nfs/projects/ptgt_predictions/rodeghero_dataset/tafasca_baseline"
 ]
 
 def concordance_corr_coeff(x, y):
@@ -156,92 +156,71 @@ def average_metrics(metric_list):
             avg[k] = float(np.nanmean(vals))
     return avg
 
-
-# ============================================================
-# Human-reference metrics (Smith study version: human vs human)
-# ============================================================
-
-def compute_human_reference_c_metrics():
-    """
-    Human-reference metrics for the C data:
-    uses your original fixation_data_next_token_c logic and computes
-    shape metrics for all human–human pairs, then averages them.
-    """
-    fixation_data = pickle.load(open("/nfs/projects/smith_study.pkl", "rb"))
-    holdoutset_list = ["p2","p4","p6","p7","p8","p9","p10","p11","p13","p14",
-                       "p15","p16","p17","p18","p20","p21"]
-
+def compute_human_reference_java_2013_dataset_metrics():
+    fixation_data = pickle.load(open("/nfs/projects/rodeghero_study.pkl", "rb"))
+    holdoutset_list = ["KGT001", "KGT002", "KGT003", "KGT004", "KGT005", "KGT007", "KGT008", "KGT009", "KGT010"]
     human_metric_list = []
 
     for holdout in holdoutset_list[:]:
         temp_score = []
         for method_id in list(fixation_data.keys())[:]:
-            # your original structure: allids over all keys
+            
             allids = list(fixation_data.keys())
-
-            # find holdoutset for this holdout
-            for id_ in allids:
-                participant = id_.split("_")[0]
-                if participant == holdout:
-                    if id_ in fixation_data and fixation_data[id_] != []:
-                        holdoutset = fixation_data[id_]
+            for id in allids:
+                participant = id #id.split("-")[0]
+                if(participant == holdout):
+                    if(id in fixation_data and fixation_data[id] != []):
+                        holdoutset = fixation_data[id]
                         break
-
-            # compare against all non-holdouts
-            for id_ in allids:
-                participant = id_.split("_")[0]
-                if participant == holdout:
+            
+            for id in allids:
+                participant = id #id.split("-")[0]
+                if(participant == holdout):
                     continue
-                if id_ in fixation_data and fixation_data[id_] != []:
-                    nonholdout = fixation_data[id_]
-                else:
-                    continue
+                if(id in fixation_data and fixation_data[id] != []):
+                    nonholdout = fixation_data[id]
 
                 holdoutdurationlist = []
                 holdoutdurationdict = {}
-                for d in holdoutset:
-                    token = d["token"]
-                    duration = d["duration"]
-                    fuunction = d["function"]
-                    holdoutdurationdict[(token, fuunction)] = duration
-
-                if nonholdout == []:
+                for data in holdoutset:
+                    token = data["token"]
+                    duration = data["duration"]
+                    fuunction = data["function"]
+                    holdoutdurationdict[(token,fuunction)] = duration
+                
+                if(nonholdout == []):
+                
                     continue
-
                 ptgtlist = []
                 ptgtdict = {}
-                for d in nonholdout:
-                    token = d["token"]
-                    duration = d["duration"]
-                    function = d["function"]
+                for data in nonholdout:
+                    token = data["token"]
+                    duration = data["duration"]
+                    function = data["function"]
                     ptgtdict[(token, function)] = duration
-
+                
                 for (token, function) in holdoutdurationdict:
-                    if (token, function) in ptgtdict:
-                        duration_non = ptgtdict[(token, function)]
-                        duration_hold = holdoutdurationdict[(token, function)]
-                        ptgtlist.append(duration_non)
-                        holdoutdurationlist.append(duration_hold)
-
-                if len(ptgtlist) <= 1:
+                    if((token, function) in ptgtdict):
+                        duration = ptgtdict[(token, function)]
+                        ptgtlist.append(duration)
+                        duration = holdoutdurationdict[(token, function)]
+                        holdoutdurationlist.append(duration)
+                if(len(ptgtlist) <= 1):
                     continue
-
-                # here we replace the original pearsonr() call with full shape metrics
+                
                 metrics = compute_metrics(holdoutdurationlist, ptgtlist)
                 human_metric_list.append(metrics)
                 temp_score.append(metrics["pearson_r"])
-
+    
         if temp_score:
             avg_corr = sum(temp_score) / len(temp_score)
         else:
             avg_corr = float("nan")
-        print(f"C human-reference Pearson for {holdout}: {avg_corr:.4f}")
-
+        print(f"Java 2013 dataset Pearson for {holdout}: {avg_corr:.4f}")
     if human_metric_list:
         return average_metrics(human_metric_list)
     else:
         return None
-
 
 # ============================================================
 # Main: compute model metrics, human-reference metrics, print table
@@ -276,13 +255,12 @@ def main():
         print(f"  R²:                 {avg['r2']:.4f}")
         print(f"  EMD:                {avg['emd']:.4f}")
 
-
-    print("\n==============================")
-    print("Computing Smith study human-reference (human vs human) metrics")
-    print("==============================")
-    human_c_avg = compute_human_reference_c_metrics()
-
     
+    print("\n==============================")
+    print("Computing Rodeghero dataset human-reference (human vs human) metrics")
+    print("==============================")
+    human_java_2013_avg = compute_human_reference_java_2013_dataset_metrics()
+
     # 3) Pretty-printed, aligned shape-metrics table with custom ordering
     print("\n========== Shape Metrics Table (Pretty Print) ==========")
 
@@ -291,30 +269,31 @@ def main():
         "human_reference",
         "bansal_baseline",
         "tafasca_baseline",
-        "ours_no_corr",
-        "ours"
+        "ours_nocorr",
+        "ours",
     ]
 
     # Build rows
     rows = []
     for name in desired_order:
         if name == "":
-            rows.append(["", "", "", "", ""])  # blank separator row
+            rows.append(["","", "", "", "", ""])  # blank separator row
             continue
 
+        
         if name == "human_reference":
-            if human_c_avg is None:
-                rows.append([name, "n/a","n/a",  "n/a", "n/a"])
+            if human_java_2013_avg is None:
+                rows.append([name, "n/a", "n/a", "n/a", "n/a"])
             else:
                 rows.append([
                     name,
-                    f"{human_c_avg['pearson_r']:.4f}",
-                    f"{human_c_avg['spearman_rho']:.4f}",
-                    f"{human_c_avg['kendall_tau']:.4f}",
-                    f"{human_c_avg['cosine_similarity']:.4f}",
+                    f"{human_java_2013_avg['pearson_r']:.4f}",
+                    f"{human_java_2013_avg['spearman_rho']:.4f}",
+                    f"{human_java_2013_avg['kendall_tau']:.4f}",
+                    f"{human_java_2013_avg['cosine_similarity']:.4f}",
                 ])
             continue
-        
+
         # Model directories: match by basename
         matching_key = None
         for base in dir_summaries:
@@ -328,7 +307,7 @@ def main():
 
         avg = dir_summaries[matching_key]
         if avg is None:
-            rows.append([name, "n/a", "n/a", "n/a", "n/a"])
+            rows.append([name,"n/a", "n/a", "n/a", "n/a"])
         else:
             rows.append([
                 name,
@@ -338,7 +317,7 @@ def main():
                 f"{avg['cosine_similarity']:.4f}",
             ])
 
-    headers = ["Directory", "Pearson r", "Spearman ρ", "Kendall τ", "Cosine sim"]
+    headers = ["Directory", "Pearson r", "Spearman ρ",  "Kendall τ", "Cosine sim"]
 
     # Compute column widths
     col_widths = [
