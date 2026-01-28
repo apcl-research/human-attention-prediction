@@ -68,3 +68,14 @@ To computing the metrics, run the following scripts for each study:
 python3 metrics_wallace_study.py
 ```
 
+- Smith study
+```
+python3 metrics_smith_study.py
+```
+
+- Rodeghero study
+```
+python3 metrics_rodeghero_study.py
+```
+
+
