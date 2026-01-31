@@ -17,9 +17,9 @@ pip install -r requirements.txt
 
 - Download the data in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place all data in ``/nfs/projects/``. Otherwise, you would need to change the directory in the data compiling script.
 - Downlad the pretrained models in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place C models in ``/nfs/projects/cam`` and Java models in ``/nfs/dropbox/jam350m_jm_1024``.
-- For reproducing the results from our model, refer to the [Finetuning and Inference](#finetuning-and-inference) section and the scripts are in [jam](./jam). 
-- For reproducing the results from the baseline proposed by Bansal et al., refer to the [Bansal Baseline](#bansal-baseline) section and the scripts are in [bansal_baseline](./bansal_baseline)
-- For reproducing the results from the baseline proposed by Tafasca et al., refer to the [Tafasca Baseline](#tafasca-baseline) and the scripts are in [Tafasca_baseline](./tafasca_baseline)
+- For reproducing the results from our model, refer to the [Finetuning and Inference](#finetuning-and-inference) section and the scripts are in ``ours``. 
+- For reproducing the results from the baseline proposed by Bansal et al., refer to the [Bansal Baseline](#bansal-baseline) section and the scripts are in ``bansal_baseline``.
+- For reproducing the results from the baseline proposed by Tafasca et al., refer to the [Tafasca Baseline](#tafasca-baseline) and the scripts are in ``tafasca_baseline``.
 
 ## Data Processing
 For data processing, simply run the bash script for each dataset as follows:
