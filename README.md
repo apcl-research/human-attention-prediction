@@ -17,9 +17,9 @@ pip install -r requirements.txt
 
 - Download the data in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place all data in ``/nfs/projects/``. Otherwise, you would need to change the directory in the data compiling script.
 - Downlad the pretrained models in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place C models in ``/nfs/projects/cam`` and Java models in ``/nfs/dropbox/jam350m_jm_1024``.
-- For reproducing the results from our model, refer to the [Finetuning and Inference](#finetuning-and-inference) section and the scripts are in ``ours``. 
-- For reproducing the results from the baseline proposed by Bansal et al., refer to the [Bansal Baseline](#bansal-baseline) section and the scripts are in ``bansal_baseline``.
-- For reproducing the results from the baseline proposed by Tafasca et al., refer to the [Tafasca Baseline](#tafasca-baseline) and the scripts are in ``tafasca_baseline``.
+- For reproducing the results from our model, refer to the [Finetuning and Inference](#finetuning-and-inference) section and the scripts are in ``ours`` folder. 
+- For reproducing the results from the baseline proposed by Bansal et al., refer to the [Bansal Baseline](#bansal-baseline) section and the scripts are in ``bansal_baseline`` folder.
+- For reproducing the results from the baseline proposed by Tafasca et al., refer to the [Tafasca Baseline](#tafasca-baseline) and the scripts are in ``tafasca_baseline`` folder.
 
 ## Data Processing
 For data processing, simply run the bash script for each dataset as follows:
@@ -137,6 +137,7 @@ Run the following scripts to train the models proposed by Tafasca et al. in our 
 
 - Note that the script will generate the model checkpoint, prediction results in a pickle file, a file that show Pearson correlation between human reference and model predicition.
 - You will need to place those results in the right place or change the directory of the script in the [Metrics](#metrics) section to run the full evaluation.
+
 
 
 
