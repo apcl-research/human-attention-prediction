@@ -1,0 +1,21 @@
+#!/bin/bash
+rm scanpath_results_claude_5tokens_reading.csv
+csv_file="scanpath_results_claude_incontext_5tokens.csv"
+header="fid,Normalized_LD,NDCG,Precision@k, Recall@k"
+echo "$header" > "$csv_file"
+
+fid_list=(1046788 1118165 11759898 11950130 1412807 15689897 16958722 1736289 1810886 18123253 18251847 18252350 18420500 18912425 18929060 19280843 19282261 19344442 19344536 19346491 19498298 20687719 20950900 21359951 22407318 22618655 22622479 22624602 22628734 22907997 24245709 250694 26412118 26493872 26501411 27798254 27801498 27802185 27907979 28953715 2896279 29852582 29854794 29859244 31203037 31788771 33519720 33719114 33719117 33719118 33719607 34413723 34413807 34413808 34425716 34426334 34426756 34426938 3456415 3457090 34609355 35061399 35553511 35553791 37762493 38184555 38221537 39215677 3934822 40099556 40776207 40778768 40865383 40875567 40879350 4280405 43040209 43040436 43303607 43419611 4453291 45888514 45929468 47479282 48104729 48861766 49121415 51019251 51122387)
+
+
+python3 data_processing_incontext_5tokens_reading.py
+python3 retrieve.py --batch_id="yourbatchid" --output_dir="scanpath_results_claude_5tokens_reading"
+
+for fid in "${fid_list[@]}"; do        
+	echo $fid
+        id="${dir%/}"      
+        id="${id##*_}"     
+
+        python3 metrics_func.py --holdout=$fid --pred-dir="scanpath_results_claude_5tokens_reading" --out=$csv_file --N=5 --pids=/nfs/projects/scanpath/scanpath_prediction/bansal_dataset/reading/allfids.pkl --ref-file=/nfs/projects/scanpath/scanpath_prediction/bansal_dataset/reading
+
+    sleep 5
+done
