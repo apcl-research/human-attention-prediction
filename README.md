@@ -1,5 +1,12 @@
 # Predicting Human Visual Attention on Words in Source Code
 
+## Code for Predicting Human Visual Attention on Words in Source Code
+
+Proposed by:
+- [Chia-Yi Su](https://chiayisu.github.io/)
+- [Collin McMillan](https://sdf.org/~cmc/)
+
+
 ## Quick link
 - [To-do list](#to-do-list)
 - [Data Processing](#data-processing)
