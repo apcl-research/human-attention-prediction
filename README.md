@@ -23,7 +23,7 @@ Proposed by:
 pip install -r requirements.txt
 ```
 
-- Download the data in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place all data in ``/nfs/projects/``. Otherwise, you would need to change the directory in the data compiling script.
+- Download the data in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place all data in ``/nfs/projects/``.
 - Downlad the pretrained models in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place C models in ``/nfs/projects/cam`` and Java models in ``/nfs/dropbox/jam350m_jm_1024``.
 - For reproducing the results from our model, refer to the [Finetuning and Inference](#finetuning-and-inference) section and the scripts are in ``ours`` folder. 
 - For reproducing the results from the baseline proposed by Bansal et al., refer to the [Bansal Baseline](#bansal-baseline) section and the scripts are in ``bansal_baseline`` folder.
