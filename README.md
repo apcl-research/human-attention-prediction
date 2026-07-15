@@ -165,6 +165,45 @@ Simply run the following script for model trainig in each directory for Bansal b
 ```
 ./run_scanpath.sh
 ```
+### GPT-5 
+
+Simply run the following script for reading and writing task respectively.
+```
+./run_scanpath_gpt.sh
+```
+
+```
+./run_scanpath_gpt_writing.sh
+```
+
+- Note that you will need an API to run the script. In addition, you might need to change the paths/parameters in the script.
+- We use ```gpt-5-nano``` for the experiments in the paper.
+
+### Claude
+
+Simply run the following script for reading and writing task respectively.
+```
+python3 data_processing_incontext_5tokens_reading.py
+
+python3 data_processing_incontext_5tokens_writing.py
+
+python3 data_processing_incontext_6tokens_reading.py
+
+python3 data_processing_incontext_6tokens_writing.py
+```
+
+After the process is done, you can simply run the following command to genearte the results.
+
+```
+./run_scanpath_claude.sh
+```
+
+```
+./run_scanpath_claude_writing.sh
+```
+- Before you generate the results, you will need to ensure the process is done. You can check the Claude console for this information.
+- Note that you will need an API to run the script. In addition, you might need to change the paths/parameters in the script.
+
 
 
 
