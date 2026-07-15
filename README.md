@@ -154,14 +154,14 @@ Download the dataset from [Hugginface](https://huggingface.co/datasets/apcl/scan
 
 ### Step2: Compile data
 
-Simply run the following script to compile the data in each directory.
+Simply run the following script to compile the data in each directory for Bansal baseline and our approach.
 ```
 ./compile_scanpath_data.sh
 ```
 - Note that you should change the TOKEN and the name of the folder in the script
 
 ### Step3: Train the model
-Simply run the following script for model trainig in each directory. When finished, the script would delete all the predictions and models since the models are not small. It will also geneate a csv file as the report.
+Simply run the following script for model trainig in each directory for Bansal baseline and our approach. When finished, the script would delete all the predictions and models since the models are not small. It will also geneate a csv file as the report.
 ```
 ./run_scanpath.sh
 ```
