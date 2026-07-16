@@ -23,8 +23,8 @@ Proposed by:
 pip install -r requirements.txt
 ```
 
-- Download the data in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place all data in ``/nfs/projects/``.
-- Downlad the pretrained models in the [link](https://drive.google.com/drive/folders/1EwYCgbDlvyodcBF_WbqvJWRGLzqu-hMj?usp=drive_link) and place C models in ``/nfs/projects/cam`` and Java models in ``/nfs/dropbox/jam350m_jm_1024``.
+- Download the data in the [link](https://doi.org/10.5281/zenodo.21380317) and place all data in ``/nfs/projects/``.
+- Downlad the pretrained models in the [link](https://doi.org/10.5281/zenodo.21380317) and place C models in ``/nfs/projects/cam`` and Java models in ``/nfs/dropbox/jam350m_jm_1024``.
 - For reproducing the results from our model, refer to the [Finetuning and Inference](#finetuning-and-inference) section and the scripts are in ``ours`` folder. 
 - For reproducing the results from the baseline proposed by Bansal et al., refer to the [Bansal Baseline](#bansal-baseline) section and the scripts are in ``bansal_baseline`` folder.
 - For reproducing the results from the baseline proposed by Tafasca et al., refer to the [Tafasca Baseline](#tafasca-baseline) and the scripts are in ``tafasca_baseline`` folder.
@@ -148,9 +148,11 @@ Run the following scripts to train the models proposed by Tafasca et al. in our 
 
 ## Scanpath Prediction
 
-### Step1: Download data
+### Step1: Download data and models
 
-Download the dataset from [Hugginface](https://huggingface.co/datasets/apcl/scanpath_prediction/tree/main) and place it in ```/nfs/projects/scanpath/scanpath_prediction/bansal_dataset```. Otherwise, you would need to change the name of the directory in both ```compile_scanpath_data.sh``` and ```run_scanpath.sh``` in each directory.
+Download the dataset from [link](https://doi.org/10.5281/zenodo.21380317) and place it in ```/nfs/projects/scanpath/scanpath_prediction/bansal_dataset```. You would need to change the name of the directory in both ```compile_scanpath_data.sh``` and ```run_scanpath.sh``` in each directory if you want to use different file path.
+
+You will also need to download the human attention pretrained models from [link](https://doi.org/10.5281/zenodo.21380317).
 
 ### Step2: Compile data
 
